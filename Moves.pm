@@ -16,7 +16,7 @@ our @EXPORT = qw(
 		 %from_algebraic
 		 %move_table
 		 );
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use vars qw(
 	    %King_Moves
@@ -394,7 +394,7 @@ Chess::PGN::Moves - Perl extension for tabular data in support of Chess::PGN::EP
 
 =head1 SYNOPSIS
 
-  use PGN::Moves;
+  use Chess::PGN::Moves;
 
 =head1 DESCRIPTION
 
