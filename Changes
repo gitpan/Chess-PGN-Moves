@@ -6,5 +6,8 @@ Revision history for Perl extension Chess::PGN::Moves.
 0.02  Wed Feb 13 6:14:30 2002
         - remove illegal (off board!) moves from %King_Moves and %Knight_Moves found
 	  by sadpeterpan@rocketmail.com, thanks spdan!
+0.03  Sat Feb 23 09:35:41 2002
+        - documentation changes and corrections only
+
 
 

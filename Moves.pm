@@ -16,7 +16,7 @@ our @EXPORT = qw(
 		 %from_algebraic
 		 %move_table
 		 );
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use vars qw(
 	    %King_Moves
@@ -423,11 +423,15 @@ provides quick translation from algebraic square notation to a more useful numer
 
 =head2 DEPENDENCIES
 
+Since this module doesn't contain any executable code, there are no
+actual dependencies. It is more likely that it would be used in concert with
+the following:
+
 =over
 
-=item CHESS::PGN::EPD (of dubious value with, not actually required though...)
+=item CHESS::PGN::EPD
 
-=item CHESS::PGN::PGNParser (useless without, see previous aside)
+=item CHESS::PGN::Parse
 
 =back
 

@@ -1,4 +1,4 @@
-Chess/PGN/Moves version 0.02
+Chess/PGN/Moves version 0.03
 ============================
 
 Chess::PGN::Moves - Perl extension for tabular data in support of Chess::PGN::EPD
