@@ -16,7 +16,7 @@ our @EXPORT = qw(
 		 %from_algebraic
 		 %move_table
 		 );
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use vars qw(
 	    %King_Moves
@@ -29,14 +29,14 @@ use vars qw(
 	    );
 
 %King_Moves = (
-a1 => [qw(a2 b2 b1 b0)],
-b1 => [qw(a2 b2 c2 a1 c1 b0 c0)],
-c1 => [qw(b2 c2 d2 b1 d1 b0 c0 d0)],
-d1 => [qw(c2 d2 e2 c1 e1 c0 d0 e0)],
-e1 => [qw(d2 e2 f2 d1 f1 d0 e0 f0)],
-f1 => [qw(e2 f2 g2 e1 g1 e0 f0 g0)],
-g1 => [qw(f2 g2 h2 f1 h1 f0 g0 h0)],
-h1 => [qw(g2 h2 g1 g0 h0)],
+a1 => [qw(a2 b2 b1)],
+b1 => [qw(a2 b2 c2 a1 c1)],
+c1 => [qw(b2 c2 d2 b1 d1)],
+d1 => [qw(c2 d2 e2 c1 e1)],
+e1 => [qw(d2 e2 f2 d1 f1)],
+f1 => [qw(e2 f2 g2 e1 g1)],
+g1 => [qw(f2 g2 h2 f1 h1)],
+h1 => [qw(g2 h2 g1)],
 a2 => [qw(a3 b3 b2 a1 b1)],
 b2 => [qw(a3 b3 c3 a2 c2 a1 b1 c1)],
 c2 => [qw(b3 c3 d3 b2 d2 b1 c1 d1)],
@@ -297,22 +297,22 @@ h8 => [qw(a1 b2 c3 d4 e5 f6 g7)],
 );
 
 %Knight_Moves = (
-a1 => [qw(b3 c2 c0)],
-b1 => [qw(a3 c3 d2 d0)],
-c1 => [qw(a2 b3 d3 e2 e0)],
-d1 => [qw(b0 b2 c3 e3 f2 f0)],
-e1 => [qw(c0 c2 d3 f3 g2 g0)],
-f1 => [qw(d0 d2 e3 g3 h2 h0)],
-g1 => [qw(e0 e2 f3 h3)],
-h1 => [qw(f0 f2 g3)],
-a2 => [qw(b4 c3 c1 b0)],
-b2 => [qw(a4 c4 d3 d1 c0)],
-c2 => [qw(b0 a1 a3 b4 d4 e3 e1 d0)],
-d2 => [qw(c0 b1 b3 c4 e4 f3 f1 e0)],
-e2 => [qw(d0 c1 c3 d4 f4 g3 g1 f0)],
-f2 => [qw(e0 d1 d3 e4 g4 h3 h1 g0)],
-g2 => [qw(f0 e1 e3 f4 h4 h0)],
-h2 => [qw(g0 f1 f3 g4)],
+a1 => [qw(b3 c2)],
+b1 => [qw(a3 c3 d2)],
+c1 => [qw(a2 b3 d3 e2)],
+d1 => [qw(b2 c3 e3 f2)],
+e1 => [qw(c2 d3 f3 g2)],
+f1 => [qw(d2 e3 g3 h2)],
+g1 => [qw(e2 f3 h3)],
+h1 => [qw(f2 g3)],
+a2 => [qw(b4 c3 c1)],
+b2 => [qw(a4 c4 d3 d1)],
+c2 => [qw(a1 a3 b4 d4 e3 e1)],
+d2 => [qw(b1 b3 c4 e4 f3 f1)],
+e2 => [qw(c1 c3 d4 f4 g3 g1)],
+f2 => [qw(d1 d3 e4 g4 h3 h1)],
+g2 => [qw(e1 e3 f4 h4)],
+h2 => [qw(f1 f3 g4)],
 a3 => [qw(b5 c4 c2 b1)],
 b3 => [qw(a1 a5 c5 d4 d2 c1)],
 c3 => [qw(b1 a2 a4 b5 d5 e4 e2 d1)],
