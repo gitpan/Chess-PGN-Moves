@@ -1,4 +1,4 @@
-Chess/PGN/Moves version 0.03
+Chess/PGN/Moves version 0.05
 ============================
 
 Chess::PGN::Moves - Perl extension for tabular data in support of Chess::PGN::EPD
@@ -10,11 +10,19 @@ Tables:
     %Rook_Moves
     %Bishop_Moves
     %Knight_Moves
+    %pawnWhite
+    %pawnBlack
     %from_algebraic
     %move_table
+    %engWhite
+    %engBlack
+    %Whiteeng
+    %Blackeng
 
 These tables describe all of the possible moves for a given piece. The hash %from_algebraic
 provides quick translation from algebraic square notation to a more useful numeric index.
+There are 4 additional hash tables; %engWhite, %engBlack, %Whiteeng and %Blackeng that
+provide conversion from english descriptive notation to algebraic notation for square names.
 
 INSTALLATION
 
@@ -25,6 +33,8 @@ To install this module type the following:
    make test
    make install
 
+NOTE: under Windows, substitute nmake or dmake for make.
+
 DEPENDENCIES
 
 None. Although useless without some other file such as Chess::PGN::EPD or the
@@ -34,7 +44,7 @@ COPYRIGHT AND LICENCE
 
 Put the correct copyright and licence information here.
 
-Copyright (C) 2002 Hugh S. Myers
+Copyright (C) 2010 Hugh S. Myers
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 

@@ -8,25 +8,81 @@ require Exporter;
 
 our @ISA = qw(Exporter);
 our @EXPORT = qw(
-		 %King_Moves
-		 %Queen_Moves
-		 %Rook_Moves
-		 %Bishop_Moves
-		 %Knight_Moves
-		 %from_algebraic
-		 %move_table
-		 );
-our $VERSION = '0.04';
+    %King_Moves
+    %Queen_Moves
+    %Rook_Moves
+    %Bishop_Moves
+    %Knight_Moves
+    %pawnWhite
+    %pawnBlack
+    %from_algebraic
+    %move_table
+    %engWhite
+    %engBlack
+    %Whiteeng
+    %Blackeng
+);
+our $VERSION = '0.05';
 
 use vars qw(
-	    %King_Moves
-	    %Queen_Moves
-	    %Rook_Moves
-	    %Bishop_Moves
-	    %Knight_Moves
-	    %from_algebraic
-	    %move_table
-	    );
+    %King_Moves
+    %Queen_Moves
+    %Rook_Moves
+    %Bishop_Moves
+    %Knight_Moves
+    %pawnWhite
+    %pawnBlack
+    %from_algebraic
+    %move_table
+    %engWhite
+    %engBlack
+    %Whiteeng
+    %Blackeng
+);
+
+%engWhite = qw (
+  a1 QR1 a2 QR2 a3 QR3 a4 QR4 a5 QR5 a6 QR6 a7 QR7 a8 QR8
+  b1 QN1 b2 QN2 b3 QN3 b4 QN4 b5 QN5 b6 QN6 b7 QN7 b8 QN8
+  c1 QB1 c2 QB2 c3 QB3 c4 QB4 c5 QB5 c6 QB6 c7 QB7 c8 QB8
+  d1 Q1  d2 Q2  d3 Q3  d4 Q4  d5 Q5  d6 Q6  d7 Q7  d8 Q8
+  e1 K1  e2 K2  e3 K3  e4 K4  e5 K5  e6 K6  e7 K7  e8 K8
+  f1 KB1 f2 KB2 f3 KB3 f4 KB4 f5 KB5 f6 KB6 f7 KB7 f8 KB8
+  g1 KN1 g2 KN2 g3 KN3 g4 KN4 g5 KN5 g6 KN6 g7 KN7 g8 KN8
+  h1 KR1 h2 KR2 h3 KR3 h4 KR4 h5 KR5 h6 KR6 h7 KR7 h8 KR8
+);
+
+%engBlack = qw (
+  a1 QR8 a2 QR7 a3 QR6 a4 QR5 a5 QR4 a6 QR3 a7 QR2 a8 QR1
+  b1 QN8 b2 QN7 b3 QN6 b4 QN5 b5 QN4 b6 QN3 b7 QN2 b8 QN1
+  c1 QB8 c2 QB7 c3 QB6 c4 QB5 c5 QB4 c6 QB3 c7 QB2 c8 QB1
+  d1 Q8  d2 Q7  d3 Q6  d4 Q5  d5 Q4  d6 Q3  d7 Q2  d8 Q1
+  e1 K8  e2 K7  e3 K6  e4 K5  e5 K4  e6 K3  e7 K2  e8 K1
+  f1 KB8 f2 KB7 f3 KB6 f4 KB5 f5 KB4 f6 KB3 f7 KB2 f8 KB1
+  g1 KN8 g2 KN7 g3 KN6 g4 KN5 g5 KN4 g6 KN3 g7 KN2 g8 KN1
+  h1 KR8 h2 KR7 h3 KR6 h4 KR5 h5 KR4 h6 KR3 h7 KR2 h8 KR1
+);
+
+%Whiteeng = qw (
+  QR8 a8 QR7 a7 QR6 a6 QR5 a5 QR4 a4 QR3 a3 QR2 a2 QR1 a1
+  QN8 b8 QN7 b7 QN6 b6 QN5 b5 QN4 b4 QN3 b3 QN2 b2 QN1 b1
+  QB8 c8 QB7 c7 QB6 c6 QB5 c5 QB4 c4 QB3 c3 QB2 c2 QB1 c1
+  Q8 d8  Q7 d7  Q6 d6  Q5 d5  Q4 d4  Q3 d3  Q2 d2  Q1 d1
+  K8 e8  K7 e7  K6 e6  K5 e5  K4 e4  K3 e3  K2 e2  K1 e1
+  KB8 f8 KB7 f7 KB6 f6 KB5 f5 KB4 f4 KB3 f3 KB2 f2 KB1 f1
+  KN8 g8 KN7 g7 KN6 g6 KN5 g5 KN4 g4 KN3 g3 KN2 g2 KN1 g1
+  KR8 h8 KR7 h7 KR6 h6 KR5 h5 KR4 h4 KR3 h3 KR2 h2 KR1 h1
+);
+
+%Blackeng = qw (
+  QR1 a8 QR2 a7 QR3 a6 QR4 a5 QR5 a4 QR6 a3 QR7 a2 QR8 a1
+  QN1 b8 QN2 b7 QN3 b6 QN4 b5 QN5 b4 QN6 b3 QN7 b2 QN8 b1
+  QB1 c8 QB2 c7 QB3 c6 QB4 c5 QB5 c4 QB6 c3 QB7 c2 QB8 c1
+  Q1 d8  Q2 d7  Q3 d6  Q4 d5  Q5 d4  Q6 d3  Q7 d2  Q8 d1
+  K1 e8  K2 e7  K3 e6  K4 e5  K5 e4  K6 e3  K7 e2  K8 e1
+  KB1 f8 KB2 f7 KB3 f6 KB4 f5 KB5 f4 KB6 f3 KB7 f2 KB8 f1
+  KN1 g8 KN2 g7 KN3 g6 KN4 g5 KN5 g4 KN6 g3 KN7 g2 KN8 g1
+  KR1 h8 KR2 h7 KR3 h6 KR4 h5 KR5 h4 KR6 h3 KR7 h2 KR8 h1
+);
 
 %King_Moves = (
 a1 => [qw(a2 b2 b1)],
@@ -363,6 +419,108 @@ g8 => [qw(f6 e7 h6)],
 h8 => [qw(g6 f7)],
 );
 
+%pawnWhite = (
+a2 => [qw(a3 a4 b3)],
+b2 => [qw(b3 b4 a3 c3)],
+c2 => [qw(c3 c4 b3 d3)],
+d2 => [qw(d3 d4 c3 e3)],
+e2 => [qw(e3 e4 d3 f3)],
+f2 => [qw(f3 f4 e3 g3)],
+g2 => [qw(g3 g4 f3 h3)],
+h2 => [qw(h3 h4 g3)],
+a3 => [qw(a4 b4)],
+b3 => [qw(b4 c4 a4)],
+c3 => [qw(c4 d4 b4)],
+d3 => [qw(d4 e4 c4)],
+e3 => [qw(e4 f4 d4)],
+f3 => [qw(f4 g4 e4)],
+g3 => [qw(g4 h4 f4)],
+h3 => [qw(h4    g4)],
+a4 => [qw(a5 b5)],
+b4 => [qw(b5 c5 a5)],
+c4 => [qw(c5 d5 b5)],
+d4 => [qw(d5 e5 c5)],
+e4 => [qw(e5 f5 d5)],
+f4 => [qw(f5 g5 e5)],
+g4 => [qw(g5 h5 f5)],
+h4 => [qw(h5    g5)],
+a5 => [qw(a6 b6)],
+b5 => [qw(b6 c6 a6)],
+c5 => [qw(c6 d6 b6)],
+d5 => [qw(d6 e6 c6)],
+e5 => [qw(e6 f6 d6)],
+f5 => [qw(f6 g6 e6)],
+g5 => [qw(g6 h6 f6)],
+h5 => [qw(h6    g6)],
+a6 => [qw(a7 b7)],
+b6 => [qw(b7 c7 a7)],
+c6 => [qw(c7 d7 b7)],
+d6 => [qw(d7 e7 c7)],
+e6 => [qw(e7 f7 d7)],
+f6 => [qw(f7 g7 e7)],
+g6 => [qw(g7 h7 f7)],
+h6 => [qw(h7    g7)],
+a7 => [qw(a8 b8)],
+b7 => [qw(b8 c8 a8)],
+c7 => [qw(c8 d8 b8)],
+d7 => [qw(d8 e8 c8)],
+e7 => [qw(e8 f8 d8)],
+f7 => [qw(f8 g8 e8)],
+g7 => [qw(g8 h8 f8)],
+h7 => [qw(h8    g8)],
+);
+
+%pawnBlack = (
+a7 => [qw(a6 a5 b6)],
+b7 => [qw(b6 b5 c6 a6)],
+c7 => [qw(c6 c5 d6 b6)],
+d7 => [qw(d6 d5 e6 c6)],
+e7 => [qw(e6 e5 f6 d6)],
+f7 => [qw(f6 f5 g6 e6)],
+g7 => [qw(g6 g5 h6 f6)],
+h7 => [qw(h6 h5 g6)],
+a6 => [qw(a5 b5)],
+b6 => [qw(b5 c5 a5)],
+c6 => [qw(c5 d5 b5)],
+d6 => [qw(d5 e5 c5)],
+e6 => [qw(e5 f5 d5)],
+f6 => [qw(f5 g5 e5)],
+g6 => [qw(g5 h5 f5)],
+h6 => [qw(h5    g5)],
+a5 => [qw(a4 b4)],
+b5 => [qw(b4 c4 a4)],
+c5 => [qw(c4 d4 b4)],
+d5 => [qw(d4 e4 c4)],
+e5 => [qw(e4 f4 d4)],
+f5 => [qw(f4 g4 e4)],
+g5 => [qw(g4 h4 f4)],
+h5 => [qw(h4    g4)],
+a4 => [qw(a3 b3)],
+b4 => [qw(b3 c3 a3)],
+c4 => [qw(c3 d3 b3)],
+d4 => [qw(d3 e3 c3)],
+e4 => [qw(e3 f3 d3)],
+f4 => [qw(f3 g3 e3)],
+g4 => [qw(g3 h3 f3)],
+h4 => [qw(h3    g3)],
+a3 => [qw(a2 b2)],
+b3 => [qw(b2 c2 a2)],
+c3 => [qw(c2 d2 b2)],
+d3 => [qw(d2 e2 c2)],
+e3 => [qw(e2 f2 d2)],
+f3 => [qw(f2 g2 e2)],
+g3 => [qw(g2 h2 f2)],
+h3 => [qw(h2    g2)],
+a2 => [qw(a1 b1)],
+b2 => [qw(b1 c1 a1)],
+c2 => [qw(c1 d1 b1)],
+d2 => [qw(d1 e1 c1)],
+e2 => [qw(e1 f1 d1)],
+f2 => [qw(f1 g1 e1)],
+g2 => [qw(g1 h1 f1)],
+h2 => [qw(h1    g1)],
+);
+
 %from_algebraic = (
 		   "a1", 0,"b1", 1,"c1", 2,"d1", 3,"e1", 4,"f1", 5,"g1", 6,"h1", 7,
 		   "a2", 8,"b2", 9,"c2",10,"d2",11,"e2",12,"f2",13,"g2",14,"h2",15,
@@ -382,9 +540,6 @@ h8 => [qw(g6 f7)],
 	       B => \%Bishop_Moves,
 	       );
 
-
-# Preloaded methods go here.
-
 1;
 __END__
 
@@ -398,8 +553,11 @@ Chess::PGN::Moves - Perl extension for tabular data in support of Chess::PGN::EP
 
 =head1 DESCRIPTION
 
-These tables (as listed under EXPORT below) describe all of the possible moves for a given piece. The hash %from_algebraic
-provides quick translation from algebraic square notation to a more useful numeric index.
+These tables (as listed under EXPORT below) describe all of the possible moves for a given piece. 
+The hash %from_algebraic provides quick translation from algebraic square notation to a more useful 
+numeric index. There are 4 additional hash tables; %engWhite, %engBlack, %Whiteeng and %Blackeng that
+provide conversion from english descriptive notation to algebraic notation for square names.
+
 
 =head2 EXPORT
 
@@ -415,9 +573,21 @@ provides quick translation from algebraic square notation to a more useful numer
 
 =item %Knight_Moves
 
+=item %pawnWhite
+
+=item %pawnBlack
+
 =item %from_algebraic
 
 =item %move_table
+
+=item %engWhite
+
+=item %engBlack
+
+=item %Whiteeng
+
+=item %Blackeng
 
 =back
 
@@ -445,7 +615,7 @@ B<I<Hugh S. Myers>>
 
 =over
 
-=item Always: hsmyers@sdragons.com
+=item Always: hsmyers@gmail.com
 
 =back
 
